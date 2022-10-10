@@ -1,9 +1,7 @@
-
-
-
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const routes = require("./routes/employee.routes");
 
 const server = express();
 
@@ -16,6 +14,6 @@ server.use(express.json());
 server.use(morgan("dev"));
 
 // Routes
-server.use("/api/employees",require("./routes/employees.routes"));
+server.use("/api/employees", routes);
 
 module.exports = server; 

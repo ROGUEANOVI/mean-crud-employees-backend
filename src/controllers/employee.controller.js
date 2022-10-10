@@ -1,5 +1,5 @@
 const express = require("express");
-const Employee = require("../models/employee");
+const Employee = require("../models/employee.model");
 const employeeCtrl = {};
 
 employeeCtrl.getEmployees = async (req, res) =>{
@@ -18,7 +18,7 @@ employeeCtrl.getEmployee = async (req, res) => {
   res.json(employee);
 }
 
-employeeCtrl.editEmployee = async (req, res) => {
+employeeCtrl.updateEmployee = async (req, res) => {
   const employee = {
     name: req.body.name,
     position: req.body.position,
