@@ -1,9 +1,12 @@
-const mongosee = require("mongoose");
+const mongoose = require("mongoose");
 
-const URI = "mongodb+srv://ROGUEANOVI:2011@cluster0.oybph6d.mongodb.net/mean-employees";
-mongosee.connect(URI)
+const URI = process.env.MONGODB_URI 
+? process.env.MONGODB_URI 
+: "mongodb://localhost/test";
+
+mongoose.connect(URI)
 
   .then(db => console.log("Database is connected"))
   .catch(db => console.error(error));
 
-module.exports = mongosee; 
+module.exports = mongoose; 

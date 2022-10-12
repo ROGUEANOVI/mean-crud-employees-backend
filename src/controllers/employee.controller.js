@@ -1,20 +1,19 @@
-const express = require("express");
-const Employee = require("../models/employee.model");
+const employeeModel = require("../models/employee.model");
 const employeeCtrl = {};
 
 employeeCtrl.getEmployees = async (req, res) =>{
-  const employee = await Employee.find();
+  const employee = await employeeModel.find();
   res.json(employee);
 }
 
 employeeCtrl.createEmployee = async (req, res) =>{
-  const employee = new Employee(req.body);
-  await employee.save();
+  const newEmployee = new employeeModel(req.body);
+  await newEmployee.save();
   res.json({status: "Employee Saved"});
 }
 
 employeeCtrl.getEmployee = async (req, res) => {
-  const employee = await Employee.findById(req.params.id);
+  const employee = await employeeModel.findById(req.params.id);
   res.json(employee);
 }
 
@@ -26,12 +25,12 @@ employeeCtrl.updateEmployee = async (req, res) => {
     salary: req.body.salary
   };
   const {id} = req.params;
-  await Employee.findByIdAndUpdate(id, {$set: employee}, {new: true});
+  await employeeModel.findByIdAndUpdate(id, {$set: employee}, {new: true});
   res.json({status:"Employee Updated"});
 }
 
 employeeCtrl.deleteEmployee = async (req, res) => {
-  await Employee.findByIdAndRemove(req.params.id);
+  await employeeModel.findByIdAndRemove(req.params.id);
   res.json({status: "Employee Deleted"});
 }
 
